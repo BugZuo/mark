@@ -13,13 +13,19 @@ public class Fabonacci {
 		int n = Integer.parseInt(buf.readLine());
 		Fabonacci fab = new Fabonacci();
 		
+		long startTime = System.currentTimeMillis();
 		System.out.println("递归方式: " + fab.recurison(n));
+		System.out.println("运行时间:" + (System.currentTimeMillis() - startTime) + "ms\n");
 
 		System.out.println("尾递归方式：");
-		fab.endRecurison(n, 0, 1);
+		startTime = System.currentTimeMillis();
+		fab.endRecurison(n, 1, 1);
+		System.out.println("运行时间:" + (System.currentTimeMillis() - startTime) + "ms\n");
 
 		System.out.println("迭代方式：");
+		startTime = System.currentTimeMillis();
 		fab.iteration(n);
+		System.out.println("运行时间:" + (System.currentTimeMillis() - startTime) + "ms\n");
 	}
 
 	private int recurison(int n) { //简单递归
@@ -37,11 +43,11 @@ public class Fabonacci {
 
 	private void iteration(int n) { //迭代
 		int fab = 0, fab1 = 0, fab2 = 1;
-		for (int i = 0; i < n; i ++) {
+		for (int i = 0; i < n - 1; i ++) {
 			fab = fab1 + fab2;
 			fab1 = fab2;
 			fab2 = fab;
-			System.out.println(fab);
 		}
+		System.out.println(fab);
 	}
 }

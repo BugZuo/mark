@@ -59,6 +59,25 @@ public class PrimeDistance {
 		}
 	}
 
+	//改进遍历算法
+	//先左后右同时遍历素数
+	private void optimizePrint() {
+		System.out.println("-*- Opitimize the algorithm of print -*-");
+		for (int i = 0; i < data.length; i++) {
+			for (int j = 0; data[i] - j > 0; j++) {
+				if (isPrime(data[i] - j)) {
+					System.out.println((data[i] - j) + " " + j);
+					break;
+				}
+				
+				if (isPrime(data[i] + j)) {
+					System.out.println((data[i] + j) + " " + j);
+					break;
+				}
+			}
+		}
+	}
+
 	private boolean isPrime(int num) {
 		if (num <= 3) {
 			return true;
@@ -92,6 +111,7 @@ public class PrimeDistance {
 
 		PrimeDistance pd = new PrimeDistance(data);
 		pd.print();
+		pd.optimizePrint();
 
 		if (buf == null) {
 			buf.close();
